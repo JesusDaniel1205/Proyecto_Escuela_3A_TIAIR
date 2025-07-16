@@ -1,8 +1,20 @@
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import models.Conexion;
 import screens.VentanaPrincipal;
 
 public class App {
     public static void main(String[] args) throws Exception {
+
+        try{
+            Connection conn = Conexion.conectar();{
+                System.out.println("Conexion exitosa a la base de datos");
+            }
+        } catch (SQLException e){
+            System.out.println("Error al conectar l abase de datos");
+        }
 
 
         //solo para asergurar que la apariencia sea consistente en windows
