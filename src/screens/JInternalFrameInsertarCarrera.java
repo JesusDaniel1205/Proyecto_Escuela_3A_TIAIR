@@ -7,7 +7,11 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import models.Carrera;
+import models.CarreraDAO;
 
 public class JInternalFrameInsertarCarrera extends JInternalFrame{
     private JLabel lblId;
@@ -90,6 +94,43 @@ public class JInternalFrameInsertarCarrera extends JInternalFrame{
                         .addComponent(btnCancelar)
                 )
         );
+    }
+
+    private void insertarCarrera() {
+        int rows;
+
+        //recuperar datos de las cajas de texto
+        int id = Integer.parseInt(txtId.getText());
+        String nombre = txtNombreCarrera.getText();
+        double monto = Double.parseDouble(txtMonto.getText());
+
+        //Revisar que los campos no esten vacios
+        if (id <= 0 || nombre.isEmpty() || monto <= 0) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete los campos correctamente. ", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else {
+
+            //Crear un obeto Carrera
+            Carrera carrera = new Carrera(id, nombre, monto);
+
+            //Crea un objeto CarreraDAO
+            CarreraDAO carreraDAO = new CarreraDAO(this.conn);
+
+            rows = carreraDAO.insertarCarrera(carrera);
+
+            if (rows > 0) {
+                JOptionPane.showMessageDialog(this,"Carrera insertada correctamente.", "Exito",JOptionPane.INFORMATION_MESSAGE);
+                txtId.setText("");
+                txtNombreCarrera.setText("");
+                txtMonto.setText("");
+                this.dispose();//cerrar el internal frame
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Error al insertar la acarrera.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
     }
     
 }

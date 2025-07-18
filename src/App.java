@@ -7,19 +7,16 @@ import screens.VentanaPrincipal;
 
 public class App {
     public static void main(String[] args) throws Exception {
-
         Connection conn = null;
-
-        try{
-             conn = Conexion.conectar();{
-                System.out.println("Conexion exitosa a la base de datos");
+        try{ 
+              conn = Conexion.conectar();{
+                System.out.println("Conexión exitosa a la base de datos");
             }
-        } catch (SQLException e){
-            System.out.println("Error al conectar l abase de datos" + e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Error al conectar a la base de datos: " + e.getMessage());
         }
 
-
-        //solo para asergurar que la apariencia sea consistente en windows
+        //Solo para asegurar que la apariencia sea consistente en Windows
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {

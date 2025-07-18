@@ -1,12 +1,12 @@
 package models;
 
 public class Carrera {
-    
+
     private int id;
     private String nombre;
     private double monto;
 
-    public Carrera (int id, String nombre, double monto) {
+    public Carrera( int id, String nombre, double monto){
         this.id = id;
         this.nombre = nombre;
         this.monto = monto;
@@ -31,5 +31,6 @@ public class Carrera {
         this.monto = monto;
     }
 
+    
     
 }
